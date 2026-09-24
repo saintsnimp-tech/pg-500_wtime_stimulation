@@ -1,6 +1,6 @@
 {
   "dataset_name": "Australia Student Visa Subclass 500 Processing Time Sources",
-  "version": "2026-09-24.2",
+  "version": "2026-09-24.4",
   "snapshot_date": "2026-09-24",
   "timezone": "Asia/Shanghai",
   "scope": "Publicly reproducible data about Australian Student visa subclass 500 processing/waiting times",
@@ -19,6 +19,10 @@
     {"path": "10_social_source_policy.csv", "class": "collection_policy", "rows": 5},
     {"path": "11_visadashboard_cases.csv", "class": "anonymized_crowdsourced_cases", "rows": 1511, "granted": 1343, "right_censored_pending": 168},
     {"path": "12_visadashboard_profile_2026-09.csv", "class": "case_dataset_profile", "rows": 33},
+    {"path": "13_social_evidence.csv", "class": "privacy_minimized_social_evidence", "rows": 0},
+    {"path": "14_official_monthly_flows_2015-2026.csv", "class": "official_monthly_flows", "rows": 280, "snapshot_date": "2026-08-31"},
+    {"path": "15_official_monthly_flow_revisions.csv", "class": "official_revision_log", "rows": 0},
+    {"path": "snapshots/official_monthly_flows_2026-08-31.csv", "class": "official_vintage_snapshot", "rows": 280},
     {"path": "community_submission_template.csv", "class": "manual_import_template", "example_rows": 1},
     {"path": "sources.csv", "class": "provenance_catalog"},
     {"path": "data_dictionary.csv", "class": "schema_documentation"}
@@ -31,7 +35,9 @@
     "Third-party republishers do not become independent observations when they copy Home Affairs values.",
     "Community timelines are self-reported, selected cases and must not be used as a representative average.",
     "Pending VisaDashboard rows are retained as right-censored observations instead of being discarded.",
-    "VisaDashboard source IDs, officer codes, handles and free-text notes are not retained."
+    "VisaDashboard source IDs, officer codes, handles and free-text notes are not retained.",
+    "Official lodged minus granted is a flow difference, not a count of applications still waiting."
+    ,"Social adapters retain normalized dates, broad features, source URLs and content hashes but not post text or account identity."
   ],
   "excluded_or_limited_sources": [
     "ImmiAccount-specific statuses require applicant login and are not public aggregate data.",

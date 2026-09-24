@@ -1,0 +1,3 @@
+# One permitted public post URL per line. Usernames and raw post text are not stored.
+# Examples of supported hosts: x.com, weibo.com, xiaohongshu.com, xhslink.com, reddit.com.
+

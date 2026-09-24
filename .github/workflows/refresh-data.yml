@@ -27,8 +27,12 @@ jobs:
           python 等签算法.py collect visadashboard --snapshot-date "$SNAPSHOT"
       - name: Validate
         run: |
+          python 等签算法.py official-refresh
           python 等签算法.py validate
           python 等签算法.py profile
+          python 等签算法.py audit
+          python 等签算法.py train
+          python 等签算法.py visualize
           python -m unittest discover -s tests -v
       - uses: actions/upload-artifact@v4
         with:
@@ -36,4 +40,11 @@ jobs:
           path: |
             data/11_visadashboard_cases.csv
             data/12_visadashboard_profile_2026-09.csv
+            data/14_official_monthly_flows_2015-2026.csv
+            data/15_official_monthly_flow_revisions.csv
+            data/snapshots/official_monthly_flows_*.csv
+            reports/data_quality_audit.json
+            reports/data_quality_audit.md
+            models/subclass500_survival_v3.json
+            reports/figures/*.svg
           if-no-files-found: error

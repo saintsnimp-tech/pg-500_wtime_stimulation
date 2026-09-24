@@ -35,3 +35,22 @@ record_quality_score,Rule-based row quality score,0 to 100,Rows below 40 are exc
 quality_flags,Machine-readable validation flags,pipe-separated string,Examples include missing_lodgement_date and decision_before_lodgement
 field_of_study_group,Broad privacy-preserving field group,string,Raw free-text major is not retained
 provider_group,Broad provider group,string,Group of Eight Other/Unverified or Unknown; raw school text is not retained
+evidence_id,Stable pseudonymous social evidence ID,string,SHA-256 prefix over platform and public URL
+published_at,Public post publication time when exposed,ISO-8601,May be blank when the public page does not expose it
+lodgement_at,Parsed lodgement date or time,ISO-8601,Most social evidence is date-level despite the timestamp-capable field
+decision_at,Parsed decision date or time,ISO-8601,Blank for censored or incomplete timelines
+waiting_minutes,Observed duration in minutes,integer,Date-only sources are represented as whole-day multiples and do not gain artificial minute precision
+parser_confidence,Confidence in deterministic timeline extraction,high low or none,Low confidence requires manual review
+requires_manual_review,Whether the row is blocked from automatic training,yes or no,Review source dates before changing to no
+content_sha256,Hash of fetched public text,string,Allows change detection without retaining raw post text
+predictive_interval,Range containing a modeled share of future outcomes,ISO-8601 range,Not a confidence interval and not a decision guarantee
+data_confidence,Transparent evidence-sufficiency score,0 to 100 plus grade,Not the probability of grant or prediction correctness
+source_snapshot_date,Official dataset reporting cutoff,YYYY-MM-DD,Controls the BP0015 vintage and is not the project retrieval date
+activity_month,Calendar month of official visa activity,YYYY-MM,Converted from Home Affairs financial-year month members
+activity_type,Official monthly flow type,lodged or granted,Flows are separate and their difference is not a backlog measure
+count,Applications in the exact official filter,count,Primary applicants outside Australia China excluding SARs Postgraduate Research Sector
+source_resource_id,data.gov.au resource identifier,UUID,Stable resource identity for lodged or granted workbook
+source_last_modified,Resource metadata modification time,ISO date or datetime,Used with file hash for version provenance
+source_file_sha256,Hash of downloaded official workbook,SHA-256,Supports exact source-file reproducibility
+extraction_method,Machine-readable aggregation method,string,BP0015 pivot-cache aggregation
+detected_at,Time an official historical revision was detected,ISO-8601,Only populated when a later snapshot changes an existing month

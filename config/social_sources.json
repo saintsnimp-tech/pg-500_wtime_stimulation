@@ -1,0 +1,21 @@
+{
+  "x": {
+    "enabled_when_token_present": true,
+    "credential_environment_variable": "X_BEARER_TOKEN",
+    "api": "https://api.x.com/2/tweets/search/recent",
+    "default_query": "(\"subclass 500\" OR \"澳洲学签\") (lodged OR granted OR 递签 OR 下签) -is:retweet",
+    "stores_raw_text": false
+  },
+  "weibo": {
+    "public_url_collection": true,
+    "official_api_requires_user_configuration": true,
+    "stores_raw_text": false,
+    "notes": "No login bypass or undocumented keyword-search endpoint."
+  },
+  "xiaohongshu": {
+    "public_url_collection": true,
+    "stores_raw_text": false,
+    "notes": "Only public URLs that robots.txt and the public page permit; no CAPTCHA or anti-bot bypass."
+  }
+}
+

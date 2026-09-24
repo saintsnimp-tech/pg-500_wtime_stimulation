@@ -60,7 +60,7 @@ class PoliteJsonClient:
         parser = self._robots_cache[root]
         return True if parser is None else parser.can_fetch(USER_AGENT, url)
 
-    def get_json(self, url: str) -> dict[str, Any]:
+    def _get_bytes(self, url: str, headers: dict[str, str] | None = None) -> tuple[bytes, str]:
         if not self._robots_allows(url):
             raise CollectionError(f"robots.txt disallows collection: {url}")
 
@@ -69,21 +69,30 @@ class PoliteJsonClient:
             elapsed = time.monotonic() - self._last_request_at
             if elapsed < self.policy.min_delay_seconds:
                 time.sleep(self.policy.min_delay_seconds - elapsed)
-            request = urllib.request.Request(
-                url,
-                headers={"Accept": "application/json", "User-Agent": USER_AGENT},
-            )
+            request_headers = {"User-Agent": USER_AGENT, **(headers or {})}
+            request = urllib.request.Request(url, headers=request_headers)
             try:
                 self._last_request_at = time.monotonic()
                 with urllib.request.urlopen(request, timeout=self.policy.timeout_seconds) as response:
                     charset = response.headers.get_content_charset() or "utf-8"
-                    payload = json.loads(response.read().decode(charset))
-                if not isinstance(payload, dict):
-                    raise CollectionError(f"Expected a JSON object from {url}")
-                return payload
-            except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
+                    return response.read(), charset
+            except (urllib.error.URLError, TimeoutError) as exc:
                 last_error = exc
                 if attempt + 1 < self.policy.attempts:
                     time.sleep((2**attempt) + random.random() * 0.25)
         raise CollectionError(f"Failed after {self.policy.attempts} attempts: {url}") from last_error
 
+    def get_text(self, url: str, headers: dict[str, str] | None = None) -> str:
+        body, charset = self._get_bytes(url, headers=headers)
+        return body.decode(charset, errors="replace")
+
+    def get_json(self, url: str, headers: dict[str, str] | None = None) -> dict[str, Any]:
+        try:
+            payload = json.loads(
+                self.get_text(url, headers={"Accept": "application/json", **(headers or {})})
+            )
+        except json.JSONDecodeError as exc:
+            raise CollectionError(f"Invalid JSON from {url}") from exc
+        if not isinstance(payload, dict):
+            raise CollectionError(f"Expected a JSON object from {url}")
+        return payload

@@ -1,0 +1,77 @@
+{
+  "model_version": "2.0.0",
+  "trained_at": "2026-09-24T09:43:46+00:00",
+  "dataset_snapshot_date": "2026-09-24",
+  "case_dataset_sha256": "2d4f5851d6c3c0f81b2ba1c4fdec395d6ade6ba79346aaab66efd2b494eac8b3",
+  "official_dataset_sha256": "cd0957eb7d569e2fc967f4203ab99bab829472539315e7d56ad292814bbe4b71",
+  "training_rows_after_quality_and_dedup": 1460,
+  "observed_events": 1302,
+  "right_censored": 158,
+  "hyperparameters": {
+    "recency_half_life_days": 540.0,
+    "cohort_shrinkage_prior_effective_n": 80.0,
+    "crowd_ratio_cap": [
+      0.5,
+      2.0
+    ],
+    "quality_threshold": 40
+  },
+  "official_anchors": {
+    "Foreign Affairs or Defence Sector": {
+      "stream": "Foreign Affairs or Defence Sector",
+      "p50_days": 3.0,
+      "p90_days": 15.0,
+      "snapshot_date": "2026-09-24",
+      "page_updated": "2026-09-04",
+      "source_url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-processing-times/global-visa-processing-times"
+    },
+    "Higher Education Sector": {
+      "stream": "Higher Education Sector",
+      "p50_days": 19.0,
+      "p90_days": 71.0,
+      "snapshot_date": "2026-09-24",
+      "page_updated": "2026-09-04",
+      "source_url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-processing-times/global-visa-processing-times"
+    },
+    "Independent ELICOS Sector": {
+      "stream": "Independent ELICOS Sector",
+      "p50_days": 18.0,
+      "p90_days": 52.0,
+      "snapshot_date": "2026-09-24",
+      "page_updated": "2026-09-04",
+      "source_url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-processing-times/global-visa-processing-times"
+    },
+    "Non-Award Sector": {
+      "stream": "Non-Award Sector",
+      "p50_days": 1.0,
+      "p90_days": 25.0,
+      "snapshot_date": "2026-09-24",
+      "page_updated": "2026-09-04",
+      "source_url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-processing-times/global-visa-processing-times"
+    },
+    "Postgraduate Research Sector": {
+      "stream": "Postgraduate Research Sector",
+      "p50_days": 12.0,
+      "p90_days": 60.0,
+      "snapshot_date": "2026-09-24",
+      "page_updated": "2026-09-04",
+      "source_url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-processing-times/global-visa-processing-times"
+    }
+  },
+  "retrospective_backtest": {
+    "cutoff": "2025-12-31",
+    "test_events": 99,
+    "p10_days": 16.0,
+    "p50_days": 241.0,
+    "p90_days": 638.0,
+    "p10_p90_coverage": 0.9899,
+    "median_absolute_error_days": 21.0,
+    "warning": "Retrospective pseudo-backtest; source-record availability at the cutoff is not observable."
+  },
+  "method": "Official-anchored hierarchical weighted survival model with right censoring and recency weighting",
+  "known_biases": [
+    "Self-selected crowd sample",
+    "Postgraduate research over-representation",
+    "Historical source availability cannot be reconstructed for a true time-split backtest"
+  ]
+}

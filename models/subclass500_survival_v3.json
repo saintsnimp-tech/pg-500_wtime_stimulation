@@ -1,0 +1,928 @@
+{
+  "model_version": "3.0.0",
+  "trained_at": "2026-09-24T13:18:01+00:00",
+  "case_dataset_sha256": "2d4f5851d6c3c0f81b2ba1c4fdec395d6ade6ba79346aaab66efd2b494eac8b3",
+  "official_monthly_flows_sha256": "e1fcd4e567def3e4fa95bc5d55b71390339bb51979e13a6a98d6192b3e731ad7",
+  "population": "Quality-filtered, duplicate-key-collapsed VisaDashboard subclass 500 self-reports",
+  "time_split": {
+    "train_lodgement_end": "2024-12-31",
+    "test_lodgement_start": "2025-01-01",
+    "test_lodgement_end": "2025-08-31",
+    "training_rows": 1076,
+    "training_events_as_of_cutoff": 678,
+    "training_right_censored_as_of_cutoff": 398,
+    "test_rows": 317,
+    "test_events": 270,
+    "test_right_censored": 47,
+    "leakage_control": "Any pre-cutoff application decided after the cutoff is censored at the cutoff.",
+    "selection_and_calibration_window": {
+      "start": "2025-01-01",
+      "end": "2025-04-30",
+      "rows": 153,
+      "events": 135
+    },
+    "final_holdout_window": {
+      "start": "2025-05-01",
+      "end": "2025-08-31",
+      "rows": 164,
+      "events": 135
+    }
+  },
+  "features": {
+    "categorical": [
+      "education_level",
+      "study_sector",
+      "submit_location",
+      "field_of_study_group",
+      "includes_partner",
+      "is_diy",
+      "provider_group"
+    ],
+    "numeric": [
+      "lodgement_year",
+      "lodgement_month_sin",
+      "lodgement_month_cos",
+      "official_flow_available",
+      "official_lag1_lodged_log",
+      "official_lag1_granted_log",
+      "official_lag1_net_per_100",
+      "official_lag1_grant_lodged_ratio",
+      "official_lag1_trailing_3m_lodged_log"
+    ],
+    "encoded_columns": [
+      "education_level=PhD",
+      "education_level=Unknown",
+      "study_sector=Postgraduate Research",
+      "study_sector=Unknown",
+      "submit_location=Outside Australia",
+      "submit_location=Unknown",
+      "field_of_study_group=Business and Economics",
+      "field_of_study_group=Computing and Data",
+      "field_of_study_group=Education",
+      "field_of_study_group=Engineering",
+      "field_of_study_group=Health and Medicine",
+      "field_of_study_group=Humanities and Social Sciences",
+      "field_of_study_group=Natural Sciences",
+      "field_of_study_group=Other",
+      "field_of_study_group=Unknown",
+      "includes_partner=unknown",
+      "is_diy=unknown",
+      "is_diy=yes",
+      "provider_group=Other/Unverified",
+      "provider_group=Unknown",
+      "lodgement_year",
+      "lodgement_month_sin",
+      "lodgement_month_cos",
+      "official_flow_available",
+      "official_lag1_lodged_log",
+      "official_lag1_granted_log",
+      "official_lag1_net_per_100",
+      "official_lag1_grant_lodged_ratio",
+      "official_lag1_trailing_3m_lodged_log"
+    ],
+    "official_flow_scope": "China PRC excluding SARs, primary, outside Australia, Postgraduate Research",
+    "official_flow_use": "One-month-lagged contextual proxy only for matching PGR/offshore rows; case citizenship is unavailable."
+  },
+  "evaluations": [
+    {
+      "model": "kaplan_meier_global",
+      "test_rows": 317,
+      "test_events": 270,
+      "test_censored": 47,
+      "harrell_c_index": 0.5,
+      "comparable_pairs": 48756,
+      "event_only_median_absolute_error_days": 79.0,
+      "event_only_p10_p90_coverage": 0.7926,
+      "event_only_interval_rows": 270,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.1915,
+          "mean_predicted_decision_probability": 0.2911,
+          "observed_decision_fraction": 0.2555,
+          "calibration_gap": 0.0356
+        },
+        "180": {
+          "brier_score": 0.2569,
+          "mean_predicted_decision_probability": 0.5326,
+          "observed_decision_fraction": 0.4101,
+          "calibration_gap": 0.1225
+        },
+        "365": {
+          "brier_score": 0.1445,
+          "mean_predicted_decision_probability": 0.7415,
+          "observed_decision_fraction": 0.8391,
+          "calibration_gap": -0.0976
+        }
+      }
+    },
+    {
+      "model": "kaplan_meier_stratified",
+      "test_rows": 317,
+      "test_events": 270,
+      "test_censored": 47,
+      "harrell_c_index": 0.482,
+      "comparable_pairs": 48756,
+      "event_only_median_absolute_error_days": 76.5,
+      "event_only_p10_p90_coverage": 0.7926,
+      "event_only_interval_rows": 270,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.1908,
+          "mean_predicted_decision_probability": 0.276,
+          "observed_decision_fraction": 0.2555,
+          "calibration_gap": 0.0205
+        },
+        "180": {
+          "brier_score": 0.2536,
+          "mean_predicted_decision_probability": 0.5109,
+          "observed_decision_fraction": 0.4101,
+          "calibration_gap": 0.1008
+        },
+        "365": {
+          "brier_score": 0.1476,
+          "mean_predicted_decision_probability": 0.7249,
+          "observed_decision_fraction": 0.8391,
+          "calibration_gap": -0.1142
+        }
+      }
+    },
+    {
+      "model": "cox_ph",
+      "test_rows": 317,
+      "test_events": 270,
+      "test_censored": 47,
+      "harrell_c_index": 0.6026,
+      "comparable_pairs": 48756,
+      "event_only_median_absolute_error_days": 72.5,
+      "event_only_p10_p90_coverage": 0.6926,
+      "event_only_interval_rows": 270,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.1825,
+          "mean_predicted_decision_probability": 0.3452,
+          "observed_decision_fraction": 0.2555,
+          "calibration_gap": 0.0897
+        },
+        "180": {
+          "brier_score": 0.2688,
+          "mean_predicted_decision_probability": 0.6409,
+          "observed_decision_fraction": 0.4101,
+          "calibration_gap": 0.2308
+        },
+        "365": {
+          "brier_score": 0.1507,
+          "mean_predicted_decision_probability": 0.8713,
+          "observed_decision_fraction": 0.8391,
+          "calibration_gap": 0.0322
+        }
+      }
+    },
+    {
+      "model": "weibull_aft",
+      "test_rows": 317,
+      "test_events": 270,
+      "test_censored": 47,
+      "harrell_c_index": 0.6067,
+      "comparable_pairs": 48756,
+      "event_only_median_absolute_error_days": 90.3,
+      "event_only_p10_p90_coverage": 0.7074,
+      "event_only_interval_rows": 270,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.1819,
+          "mean_predicted_decision_probability": 0.34,
+          "observed_decision_fraction": 0.2555,
+          "calibration_gap": 0.0845
+        },
+        "180": {
+          "brier_score": 0.2363,
+          "mean_predicted_decision_probability": 0.5597,
+          "observed_decision_fraction": 0.4101,
+          "calibration_gap": 0.1496
+        },
+        "365": {
+          "brier_score": 0.1656,
+          "mean_predicted_decision_probability": 0.7837,
+          "observed_decision_fraction": 0.8391,
+          "calibration_gap": -0.0554
+        }
+      }
+    },
+    {
+      "model": "random_survival_forest",
+      "test_rows": 317,
+      "test_events": 270,
+      "test_censored": 47,
+      "harrell_c_index": 0.5917,
+      "comparable_pairs": 48756,
+      "event_only_median_absolute_error_days": 87.5,
+      "event_only_p10_p90_coverage": 0.8099,
+      "event_only_interval_rows": 121,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.1759,
+          "mean_predicted_decision_probability": 0.2654,
+          "observed_decision_fraction": 0.2555,
+          "calibration_gap": 0.0099
+        },
+        "180": {
+          "brier_score": 0.2232,
+          "mean_predicted_decision_probability": 0.4993,
+          "observed_decision_fraction": 0.4101,
+          "calibration_gap": 0.0892
+        },
+        "365": {
+          "brier_score": 0.1656,
+          "mean_predicted_decision_probability": 0.6946,
+          "observed_decision_fraction": 0.8391,
+          "calibration_gap": -0.1445
+        }
+      }
+    }
+  ],
+  "development_evaluations": [
+    {
+      "model": "kaplan_meier_global",
+      "test_rows": 153,
+      "test_events": 135,
+      "test_censored": 18,
+      "harrell_c_index": 0.5,
+      "comparable_pairs": 11417,
+      "event_only_median_absolute_error_days": 68.0,
+      "event_only_p10_p90_coverage": 0.7778,
+      "event_only_interval_rows": 135,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.2104,
+          "mean_predicted_decision_probability": 0.2911,
+          "observed_decision_fraction": 0.3007,
+          "calibration_gap": -0.0096
+        },
+        "180": {
+          "brier_score": 0.2479,
+          "mean_predicted_decision_probability": 0.5326,
+          "observed_decision_fraction": 0.549,
+          "calibration_gap": -0.0164
+        },
+        "365": {
+          "brier_score": 0.13,
+          "mean_predicted_decision_probability": 0.7415,
+          "observed_decision_fraction": 0.8693,
+          "calibration_gap": -0.1278
+        }
+      }
+    },
+    {
+      "model": "kaplan_meier_stratified",
+      "test_rows": 153,
+      "test_events": 135,
+      "test_censored": 18,
+      "harrell_c_index": 0.472,
+      "comparable_pairs": 11417,
+      "event_only_median_absolute_error_days": 67.0,
+      "event_only_p10_p90_coverage": 0.7778,
+      "event_only_interval_rows": 135,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.2115,
+          "mean_predicted_decision_probability": 0.2754,
+          "observed_decision_fraction": 0.3007,
+          "calibration_gap": -0.0253
+        },
+        "180": {
+          "brier_score": 0.2516,
+          "mean_predicted_decision_probability": 0.5093,
+          "observed_decision_fraction": 0.549,
+          "calibration_gap": -0.0397
+        },
+        "365": {
+          "brier_score": 0.1351,
+          "mean_predicted_decision_probability": 0.7228,
+          "observed_decision_fraction": 0.8693,
+          "calibration_gap": -0.1465
+        }
+      }
+    },
+    {
+      "model": "cox_ph",
+      "test_rows": 153,
+      "test_events": 135,
+      "test_censored": 18,
+      "harrell_c_index": 0.6047,
+      "comparable_pairs": 11417,
+      "event_only_median_absolute_error_days": 70.0,
+      "event_only_p10_p90_coverage": 0.637,
+      "event_only_interval_rows": 135,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.2143,
+          "mean_predicted_decision_probability": 0.4548,
+          "observed_decision_fraction": 0.3007,
+          "calibration_gap": 0.1542
+        },
+        "180": {
+          "brier_score": 0.2858,
+          "mean_predicted_decision_probability": 0.7647,
+          "observed_decision_fraction": 0.549,
+          "calibration_gap": 0.2157
+        },
+        "365": {
+          "brier_score": 0.1147,
+          "mean_predicted_decision_probability": 0.9351,
+          "observed_decision_fraction": 0.8693,
+          "calibration_gap": 0.0658
+        }
+      }
+    },
+    {
+      "model": "weibull_aft",
+      "test_rows": 153,
+      "test_events": 135,
+      "test_censored": 18,
+      "harrell_c_index": 0.6094,
+      "comparable_pairs": 11417,
+      "event_only_median_absolute_error_days": 82.9,
+      "event_only_p10_p90_coverage": 0.637,
+      "event_only_interval_rows": 135,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.2143,
+          "mean_predicted_decision_probability": 0.4624,
+          "observed_decision_fraction": 0.3007,
+          "calibration_gap": 0.1617
+        },
+        "180": {
+          "brier_score": 0.2639,
+          "mean_predicted_decision_probability": 0.7067,
+          "observed_decision_fraction": 0.549,
+          "calibration_gap": 0.1577
+        },
+        "365": {
+          "brier_score": 0.1135,
+          "mean_predicted_decision_probability": 0.8932,
+          "observed_decision_fraction": 0.8693,
+          "calibration_gap": 0.024
+        }
+      }
+    },
+    {
+      "model": "random_survival_forest",
+      "test_rows": 153,
+      "test_events": 135,
+      "test_censored": 18,
+      "harrell_c_index": 0.599,
+      "comparable_pairs": 11417,
+      "event_only_median_absolute_error_days": 84.0,
+      "event_only_p10_p90_coverage": 0.8495,
+      "event_only_interval_rows": 93,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.1915,
+          "mean_predicted_decision_probability": 0.3406,
+          "observed_decision_fraction": 0.3007,
+          "calibration_gap": 0.0399
+        },
+        "180": {
+          "brier_score": 0.2326,
+          "mean_predicted_decision_probability": 0.5725,
+          "observed_decision_fraction": 0.549,
+          "calibration_gap": 0.0235
+        },
+        "365": {
+          "brier_score": 0.1225,
+          "mean_predicted_decision_probability": 0.76,
+          "observed_decision_fraction": 0.8693,
+          "calibration_gap": -0.1093
+        }
+      }
+    }
+  ],
+  "holdout_evaluations": [
+    {
+      "model": "kaplan_meier_global",
+      "test_rows": 164,
+      "test_events": 135,
+      "test_censored": 29,
+      "harrell_c_index": 0.5,
+      "comparable_pairs": 12863,
+      "event_only_median_absolute_error_days": 83.0,
+      "event_only_p10_p90_coverage": 0.8074,
+      "event_only_interval_rows": 135,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.1739,
+          "mean_predicted_decision_probability": 0.2911,
+          "observed_decision_fraction": 0.2134,
+          "calibration_gap": 0.0777
+        },
+        "180": {
+          "brier_score": 0.2654,
+          "mean_predicted_decision_probability": 0.5326,
+          "observed_decision_fraction": 0.2805,
+          "calibration_gap": 0.2521
+        },
+        "365": {
+          "brier_score": 0.1581,
+          "mean_predicted_decision_probability": 0.7415,
+          "observed_decision_fraction": 0.811,
+          "calibration_gap": -0.0695
+        }
+      }
+    },
+    {
+      "model": "kaplan_meier_stratified",
+      "test_rows": 164,
+      "test_events": 135,
+      "test_censored": 29,
+      "harrell_c_index": 0.4951,
+      "comparable_pairs": 12863,
+      "event_only_median_absolute_error_days": 79.0,
+      "event_only_p10_p90_coverage": 0.8074,
+      "event_only_interval_rows": 135,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.1715,
+          "mean_predicted_decision_probability": 0.2766,
+          "observed_decision_fraction": 0.2134,
+          "calibration_gap": 0.0632
+        },
+        "180": {
+          "brier_score": 0.2555,
+          "mean_predicted_decision_probability": 0.5124,
+          "observed_decision_fraction": 0.2805,
+          "calibration_gap": 0.2319
+        },
+        "365": {
+          "brier_score": 0.1593,
+          "mean_predicted_decision_probability": 0.727,
+          "observed_decision_fraction": 0.811,
+          "calibration_gap": -0.084
+        }
+      }
+    },
+    {
+      "model": "cox_ph",
+      "test_rows": 164,
+      "test_events": 135,
+      "test_censored": 29,
+      "harrell_c_index": 0.5274,
+      "comparable_pairs": 12863,
+      "event_only_median_absolute_error_days": 73.0,
+      "event_only_p10_p90_coverage": 0.7481,
+      "event_only_interval_rows": 135,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.1529,
+          "mean_predicted_decision_probability": 0.243,
+          "observed_decision_fraction": 0.2134,
+          "calibration_gap": 0.0296
+        },
+        "180": {
+          "brier_score": 0.2529,
+          "mean_predicted_decision_probability": 0.5254,
+          "observed_decision_fraction": 0.2805,
+          "calibration_gap": 0.2449
+        },
+        "365": {
+          "brier_score": 0.1842,
+          "mean_predicted_decision_probability": 0.8119,
+          "observed_decision_fraction": 0.811,
+          "calibration_gap": 0.0009
+        }
+      }
+    },
+    {
+      "model": "weibull_aft",
+      "test_rows": 164,
+      "test_events": 135,
+      "test_censored": 29,
+      "harrell_c_index": 0.531,
+      "comparable_pairs": 12863,
+      "event_only_median_absolute_error_days": 97.3,
+      "event_only_p10_p90_coverage": 0.7778,
+      "event_only_interval_rows": 135,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.1517,
+          "mean_predicted_decision_probability": 0.2258,
+          "observed_decision_fraction": 0.2134,
+          "calibration_gap": 0.0124
+        },
+        "180": {
+          "brier_score": 0.2105,
+          "mean_predicted_decision_probability": 0.4225,
+          "observed_decision_fraction": 0.2805,
+          "calibration_gap": 0.142
+        },
+        "365": {
+          "brier_score": 0.2141,
+          "mean_predicted_decision_probability": 0.6815,
+          "observed_decision_fraction": 0.811,
+          "calibration_gap": -0.1295
+        }
+      }
+    },
+    {
+      "model": "random_survival_forest",
+      "test_rows": 164,
+      "test_events": 135,
+      "test_censored": 29,
+      "harrell_c_index": 0.5072,
+      "comparable_pairs": 12863,
+      "event_only_median_absolute_error_days": 100.0,
+      "event_only_p10_p90_coverage": 0.6786,
+      "event_only_interval_rows": 28,
+      "horizon_calibration": {
+        "90": {
+          "brier_score": 0.1614,
+          "mean_predicted_decision_probability": 0.1952,
+          "observed_decision_fraction": 0.2134,
+          "calibration_gap": -0.0182
+        },
+        "180": {
+          "brier_score": 0.2145,
+          "mean_predicted_decision_probability": 0.4311,
+          "observed_decision_fraction": 0.2805,
+          "calibration_gap": 0.1506
+        },
+        "365": {
+          "brier_score": 0.2058,
+          "mean_predicted_decision_probability": 0.6337,
+          "observed_decision_fraction": 0.811,
+          "calibration_gap": -0.1773
+        }
+      }
+    }
+  ],
+  "deployment_holdout_evaluation": {
+    "model": "weibull_aft",
+    "test_rows": 164,
+    "test_events": 135,
+    "test_censored": 29,
+    "harrell_c_index": 0.531,
+    "comparable_pairs": 12863,
+    "event_only_median_absolute_error_days": 97.3,
+    "event_only_p10_p90_coverage": 0.7778,
+    "event_only_interval_rows": 135,
+    "horizon_calibration": {
+      "90": {
+        "brier_score": 0.1517,
+        "mean_predicted_decision_probability": 0.2258,
+        "observed_decision_fraction": 0.2134,
+        "calibration_gap": 0.0124
+      },
+      "180": {
+        "brier_score": 0.2105,
+        "mean_predicted_decision_probability": 0.4225,
+        "observed_decision_fraction": 0.2805,
+        "calibration_gap": 0.142
+      },
+      "365": {
+        "brier_score": 0.2141,
+        "mean_predicted_decision_probability": 0.6815,
+        "observed_decision_fraction": 0.811,
+        "calibration_gap": -0.1295
+      }
+    }
+  },
+  "candidate_calibration_holdout_evaluation": {
+    "model": "calibrated_weibull_aft",
+    "test_rows": 164,
+    "test_events": 135,
+    "test_censored": 29,
+    "harrell_c_index": 0.531,
+    "comparable_pairs": 12863,
+    "event_only_median_absolute_error_days": 189.5,
+    "event_only_p10_p90_coverage": 0.7111,
+    "event_only_interval_rows": 135,
+    "horizon_calibration": {
+      "90": {
+        "brier_score": 0.1632,
+        "mean_predicted_decision_probability": 0.0916,
+        "observed_decision_fraction": 0.2134,
+        "calibration_gap": -0.1218
+      },
+      "180": {
+        "brier_score": 0.1966,
+        "mean_predicted_decision_probability": 0.3262,
+        "observed_decision_fraction": 0.2805,
+        "calibration_gap": 0.0457
+      },
+      "365": {
+        "brier_score": 0.2536,
+        "mean_predicted_decision_probability": 0.5693,
+        "observed_decision_fraction": 0.811,
+        "calibration_gap": -0.2416
+      }
+    }
+  },
+  "ranking": [
+    "weibull_aft",
+    "cox_ph",
+    "random_survival_forest",
+    "kaplan_meier_global",
+    "kaplan_meier_stratified"
+  ],
+  "selected_baseline": "weibull_aft",
+  "deployment": {
+    "engine": "weibull_aft",
+    "model": {
+      "model_type": "weibull_aft",
+      "feature_names": [
+        "intercept",
+        "education_level=PhD",
+        "education_level=Unknown",
+        "study_sector=Postgraduate Research",
+        "study_sector=Unknown",
+        "submit_location=Outside Australia",
+        "submit_location=Unknown",
+        "field_of_study_group=Business and Economics",
+        "field_of_study_group=Computing and Data",
+        "field_of_study_group=Education",
+        "field_of_study_group=Engineering",
+        "field_of_study_group=Health and Medicine",
+        "field_of_study_group=Humanities and Social Sciences",
+        "field_of_study_group=Natural Sciences",
+        "field_of_study_group=Other",
+        "field_of_study_group=Unknown",
+        "includes_partner=unknown",
+        "is_diy=unknown",
+        "is_diy=yes",
+        "provider_group=Other/Unverified",
+        "provider_group=Unknown",
+        "lodgement_year",
+        "lodgement_month_sin",
+        "lodgement_month_cos",
+        "official_flow_available",
+        "official_lag1_lodged_log",
+        "official_lag1_granted_log",
+        "official_lag1_net_per_100",
+        "official_lag1_grant_lodged_ratio",
+        "official_lag1_trailing_3m_lodged_log"
+      ],
+      "parameters": [
+        5.568804934282453,
+        0.2709253139045663,
+        0.12317031959115991,
+        0.2709253139045663,
+        0.12317031959115991,
+        -0.25202103696798817,
+        -0.1652552341721787,
+        -0.16004758746701916,
+        0.10613882885973858,
+        -0.17577004455690842,
+        0.2925942000319974,
+        -0.398074718158346,
+        -0.3876618494499481,
+        0.2757785858255992,
+        0.22783124642509614,
+        0.0,
+        0.024882760647050618,
+        -0.5813105674088451,
+        0.4411511445345925,
+        -0.46174632066935695,
+        -0.2565816037422544,
+        -0.3437426520612338,
+        0.17103847091042024,
+        -0.2909846356532348,
+        -0.04922679285504611,
+        -0.03703087067186055,
+        0.23123622552523534,
+        0.0638564345809232,
+        -0.10299603809291036,
+        -0.11023631889460388,
+        0.1806492247018469
+      ]
+    },
+    "feature_encoder": {
+      "levels": {
+        "education_level": [
+          "Master",
+          "PhD",
+          "Unknown"
+        ],
+        "study_sector": [
+          "Higher Education",
+          "Postgraduate Research",
+          "Unknown"
+        ],
+        "submit_location": [
+          "In Australia",
+          "Outside Australia",
+          "Unknown"
+        ],
+        "field_of_study_group": [
+          "Built Environment",
+          "Business and Economics",
+          "Computing and Data",
+          "Education",
+          "Engineering",
+          "Health and Medicine",
+          "Humanities and Social Sciences",
+          "Natural Sciences",
+          "Other",
+          "Unknown"
+        ],
+        "includes_partner": [
+          "no",
+          "unknown"
+        ],
+        "is_diy": [
+          "no",
+          "unknown",
+          "yes"
+        ],
+        "provider_group": [
+          "Group of Eight",
+          "Other/Unverified",
+          "Unknown"
+        ]
+      },
+      "means": {
+        "lodgement_year": 2023.4693308550186,
+        "lodgement_month_sin": -0.3064173612982228,
+        "lodgement_month_cos": -0.13628762111381806,
+        "official_flow_available": 0.8615241635687733,
+        "official_lag1_lodged_log": 4.240709826874065,
+        "official_lag1_granted_log": 3.838709422264591,
+        "official_lag1_net_per_100": 0.4575371747211896,
+        "official_lag1_grant_lodged_ratio": 0.6113432200097108,
+        "official_lag1_trailing_3m_lodged_log": 5.112819182566863
+      },
+      "scales": {
+        "lodgement_year": 0.8782734404841488,
+        "lodgement_month_sin": 0.5853879334811186,
+        "lodgement_month_cos": 0.7381429755547879,
+        "official_flow_available": 0.3453987248903778,
+        "official_lag1_lodged_log": 1.7477883735233095,
+        "official_lag1_granted_log": 1.6351716521329414,
+        "official_lag1_net_per_100": 0.6149270618284493,
+        "official_lag1_grant_lodged_ratio": 0.4353811150810518,
+        "official_lag1_trailing_3m_lodged_log": 2.0740129896425943
+      },
+      "feature_names": [
+        "education_level=PhD",
+        "education_level=Unknown",
+        "study_sector=Postgraduate Research",
+        "study_sector=Unknown",
+        "submit_location=Outside Australia",
+        "submit_location=Unknown",
+        "field_of_study_group=Business and Economics",
+        "field_of_study_group=Computing and Data",
+        "field_of_study_group=Education",
+        "field_of_study_group=Engineering",
+        "field_of_study_group=Health and Medicine",
+        "field_of_study_group=Humanities and Social Sciences",
+        "field_of_study_group=Natural Sciences",
+        "field_of_study_group=Other",
+        "field_of_study_group=Unknown",
+        "includes_partner=unknown",
+        "is_diy=unknown",
+        "is_diy=yes",
+        "provider_group=Other/Unverified",
+        "provider_group=Unknown",
+        "lodgement_year",
+        "lodgement_month_sin",
+        "lodgement_month_cos",
+        "official_flow_available",
+        "official_lag1_lodged_log",
+        "official_lag1_granted_log",
+        "official_lag1_net_per_100",
+        "official_lag1_grant_lodged_ratio",
+        "official_lag1_trailing_3m_lodged_log"
+      ]
+    },
+    "training_lodgement_end": "2024-12-31",
+    "calibration_lodgement_end": "2025-04-30",
+    "final_holdout_lodgement_start": "2025-05-01",
+    "feature_availability": "Only information available by lodgement is used; official flow predictors lag one calendar month.",
+    "input_resolution": "Minute timestamps are preserved in output, but model labels and covariates have day/month resolution.",
+    "calibration_decision": "The pooled isotonic candidate was rejected for production because final-holdout event MAE degraded; raw Weibull timing distribution is retained and its limited calibration is disclosed."
+  },
+  "deployment_confidence": {
+    "score": 33,
+    "grade": "limited",
+    "meaning": "Evidence and holdout-performance sufficiency, not the probability a particular prediction is correct.",
+    "penalties": [
+      "Single self-selected crowd source",
+      "No individual citizenship field",
+      "Historical first-seen timestamps unavailable"
+    ]
+  },
+  "interpretability": {
+    "cox_top_absolute_coefficients": [
+      {
+        "feature": "is_diy=unknown",
+        "coefficient": 0.68416
+      },
+      {
+        "feature": "lodgement_year",
+        "coefficient": 0.63191
+      },
+      {
+        "feature": "provider_group=Other/Unverified",
+        "coefficient": 0.51881
+      },
+      {
+        "feature": "is_diy=yes",
+        "coefficient": -0.51096
+      },
+      {
+        "feature": "field_of_study_group=Health and Medicine",
+        "coefficient": 0.47311
+      },
+      {
+        "feature": "official_lag1_granted_log",
+        "coefficient": -0.37889
+      },
+      {
+        "feature": "field_of_study_group=Engineering",
+        "coefficient": -0.37079
+      },
+      {
+        "feature": "lodgement_month_cos",
+        "coefficient": 0.35953
+      },
+      {
+        "feature": "field_of_study_group=Humanities and Social Sciences",
+        "coefficient": 0.35757
+      },
+      {
+        "feature": "submit_location=Outside Australia",
+        "coefficient": 0.34782
+      },
+      {
+        "feature": "provider_group=Unknown",
+        "coefficient": 0.3333
+      },
+      {
+        "feature": "field_of_study_group=Natural Sciences",
+        "coefficient": -0.32491
+      }
+    ],
+    "weibull_aft_shape": 1.19799,
+    "weibull_aft_top_absolute_coefficients": [
+      {
+        "feature": "intercept",
+        "coefficient": 5.5688
+      },
+      {
+        "feature": "is_diy=unknown",
+        "coefficient": -0.58131
+      },
+      {
+        "feature": "provider_group=Other/Unverified",
+        "coefficient": -0.46175
+      },
+      {
+        "feature": "is_diy=yes",
+        "coefficient": 0.44115
+      },
+      {
+        "feature": "field_of_study_group=Health and Medicine",
+        "coefficient": -0.39807
+      },
+      {
+        "feature": "field_of_study_group=Humanities and Social Sciences",
+        "coefficient": -0.38766
+      },
+      {
+        "feature": "lodgement_year",
+        "coefficient": -0.34374
+      },
+      {
+        "feature": "field_of_study_group=Engineering",
+        "coefficient": 0.29259
+      },
+      {
+        "feature": "lodgement_month_cos",
+        "coefficient": -0.29098
+      },
+      {
+        "feature": "field_of_study_group=Natural Sciences",
+        "coefficient": 0.27578
+      },
+      {
+        "feature": "education_level=PhD",
+        "coefficient": 0.27093
+      },
+      {
+        "feature": "study_sector=Postgraduate Research",
+        "coefficient": 0.27093
+      }
+    ]
+  },
+  "metric_notes": {
+    "harrell_c_index": "Uses censor-aware comparable pairs; 0.5 is no discrimination.",
+    "event_only_median_absolute_error_days": "Calculated only for observed decisions and therefore subject to event-selection bias.",
+    "event_only_p10_p90_coverage": "Outcome interval coverage among observed decisions, not all censored cases.",
+    "horizon_calibration": "Brier score and mean calibration for decision by 90, 180 and 365 days; the test window has at least 365 days of follow-up by the dataset snapshot.",
+    "calibration_candidate": "A pooled isotonic candidate was fitted on January-April 2025 and rejected after May-August 2025 holdout performance degraded."
+  },
+  "limitations": [
+    "All source rows were first captured in one 2026 snapshot, so historical record availability cannot be reconstructed.",
+    "The crowd sample is self-selected and is not representative of all Home Affairs applications.",
+    "Citizenship is absent from individual cases; China-specific official flows are contextual proxies, not confirmed individual attributes.",
+    "A decision-time model does not predict grant versus refusal."
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "dataset": "data\\11_visadashboard_cases.csv",
+  "grain": "One anonymized self-reported application timeline per source record before duplicate-key collapse",
+  "rows": 1511,
+  "columns": 22,
+  "column_names": [
+    "record_id",
+    "duplicate_key",
+    "source_id",
+    "source_quality_tier",
+    "snapshot_date",
+    "visa_subclass",
+    "application_status",
+    "event_observed",
+    "lodgement_date",
+    "decision_date",
+    "as_of_date",
+    "waiting_days",
+    "education_level",
+    "study_sector",
+    "field_of_study_group",
+    "submit_location",
+    "includes_partner",
+    "is_diy",
+    "provider_group",
+    "record_quality_score",
+    "quality_flags",
+    "provenance_url"
+  ],
+  "status_counts": {
+    "granted": 1343,
+    "pending": 168
+  },
+  "source_counts": {
+    "PLAT-VISADASHBOARD": 1511
+  },
+  "lodgement_year_counts": {
+    "2020": 2,
+    "2021": 39,
+    "2022": 156,
+    "2023": 149,
+    "2024": 771,
+    "2025": 355,
+    "2026": 38
+  },
+  "quality": {
+    "usable_quality": 1509,
+    "below_threshold": 1,
+    "quality_threshold": 40,
+    "usable_rate": 0.9987
+  },
+  "uniqueness": {
+    "duplicate_record_id_groups": 0,
+    "duplicate_record_id_rows": 0,
+    "exact_duplicate_rows_beyond_first": 0,
+    "duplicate_timeline_groups": 41,
+    "duplicate_timeline_rows": 90,
+    "rows_after_quality_and_dedup": 1460,
+    "collapsed_rows": 49
+  },
+  "validity_issue_counts": {
+    "implausible_waiting_days": 1,
+    "decision_before_lodgement": 1,
+    "missing_or_invalid_lodgement_date": 1,
+    "invalid_numeric_field": 1
+  },
+  "predictor_unknown_rates": {
+    "education_level": 0.0357,
+    "study_sector": 0.0357,
+    "field_of_study_group": 0.0,
+    "submit_location": 0.0119,
+    "includes_partner": 0.0291,
+    "is_diy": 0.7359,
+    "provider_group": 0.6181
+  },
+  "temporal_split": {
+    "train_cutoff": "2024-12-31",
+    "test_end": "2025-08-31",
+    "training_rows_before_as_of_reconstruction": 1076,
+    "test_rows": 317,
+    "test_observed_events": 270,
+    "test_right_censored": 47
+  },
+  "findings": [
+    {
+      "severity": "critical",
+      "finding": "Primary-key or timeline validity failures",
+      "evidence": {
+        "duplicate_record_id_groups": 0,
+        "invalid_date_or_duration_rows": 2
+      },
+      "impact": "Can duplicate or corrupt survival durations."
+    },
+    {
+      "severity": "high",
+      "finding": "Potential duplicate timelines",
+      "evidence": {
+        "groups": 41,
+        "affected_rows": 90,
+        "rows_after_quality_and_dedup": 1460
+      },
+      "impact": "Uncollapsed timelines overweight repeated self-reports; training uses one highest-quality row per key."
+    },
+    {
+      "severity": "high",
+      "finding": "Citizenship is unavailable in the individual-case table",
+      "evidence": {
+        "citizenship_column_present": false
+      },
+      "impact": "The crowd model cannot claim a China-only individual population; official China flows are contextual proxies only."
+    },
+    {
+      "severity": "high",
+      "finding": "Source availability time is unavailable",
+      "evidence": {
+        "source_ids": {
+          "PLAT-VISADASHBOARD": 1511
+        },
+        "snapshot_dates": [
+          "2026-09-24"
+        ]
+      },
+      "impact": "Outcome-time leakage can be prevented, but a perfect historical replay of when crowd records first appeared is impossible."
+    }
+  ],
+  "training_policy": {
+    "quality_threshold": 40,
+    "duplicate_policy": "Keep the highest-quality row per duplicate_key",
+    "censoring_policy": "Pending rows are right-censored at as_of_date",
+    "time_split_policy": "Training outcomes after the cutoff are censored at the cutoff; test cohorts lodge after the cutoff."
+  }
+}

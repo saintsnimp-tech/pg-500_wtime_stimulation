@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img">
+<rect width="1200" height="690" fill="#FFFFFF"/>
+<text x="70.0" y="42.0" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="650" fill="#1F2937">Final-holdout survival baseline comparison</text>
+<text x="70.0" y="72.0" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="400" fill="#6B7280">Train through 2024-12-31 · final holdout 2025-05-01 to 2025-08-31</text>
+<line x1="250.0" y1="130" x2="250.0" y2="530" stroke="#E5E7EB"/>
+<text x="250.0" y="558.0" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400" fill="#6B7280">0.00</text>
+<line x1="462.5" y1="130" x2="462.5" y2="530" stroke="#E5E7EB"/>
+<text x="462.5" y="558.0" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400" fill="#6B7280">0.25</text>
+<line x1="675.0" y1="130" x2="675.0" y2="530" stroke="#E5E7EB"/>
+<text x="675.0" y="558.0" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400" fill="#6B7280">0.50</text>
+<line x1="887.5" y1="130" x2="887.5" y2="530" stroke="#E5E7EB"/>
+<text x="887.5" y="558.0" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400" fill="#6B7280">0.75</text>
+<line x1="1100.0" y1="130" x2="1100.0" y2="530" stroke="#E5E7EB"/>
+<text x="1100.0" y="558.0" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400" fill="#6B7280">1.00</text>
+<text x="236.0" y="165.4" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" fill="#1F2937">kaplan_meier_global</text>
+<rect x="250" y="144.4" width="425.0" height="22" fill="#2563EB"/>
+<rect x="250" y="172.4" width="225.6" height="15" fill="#D4A72C"/>
+<text x="683.0" y="162.4" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="650" fill="#2563EB">C 0.500</text>
+<text x="483.6" y="185.4" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600" fill="#D97706">Brier180 0.265</text>
+<text x="236.0" y="245.4" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" fill="#1F2937">kaplan_meier_stratified</text>
+<rect x="250" y="224.4" width="420.8" height="22" fill="#2563EB"/>
+<rect x="250" y="252.4" width="217.2" height="15" fill="#D4A72C"/>
+<text x="678.8" y="242.4" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="650" fill="#2563EB">C 0.495</text>
+<text x="475.2" y="265.4" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600" fill="#D97706">Brier180 0.256</text>
+<text x="236.0" y="325.4" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" fill="#1F2937">cox_ph</text>
+<rect x="250" y="304.4" width="448.3" height="22" fill="#2563EB"/>
+<rect x="250" y="332.4" width="215.0" height="15" fill="#D4A72C"/>
+<text x="706.3" y="322.4" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="650" fill="#2563EB">C 0.527</text>
+<text x="473.0" y="345.4" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600" fill="#D97706">Brier180 0.253</text>
+<text x="236.0" y="405.4" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" fill="#1F2937">weibull_aft</text>
+<rect x="250" y="384.4" width="451.4" height="22" fill="#2563EB"/>
+<rect x="250" y="412.4" width="178.9" height="15" fill="#D4A72C"/>
+<text x="709.4" y="402.4" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="650" fill="#2563EB">C 0.531</text>
+<text x="436.9" y="425.4" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600" fill="#D97706">Brier180 0.210</text>
+<text x="236.0" y="485.4" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" fill="#1F2937">random_survival_forest</text>
+<rect x="250" y="464.4" width="431.1" height="22" fill="#2563EB"/>
+<rect x="250" y="492.4" width="182.3" height="15" fill="#D4A72C"/>
+<text x="689.1" y="482.4" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="650" fill="#2563EB">C 0.507</text>
+<text x="440.3" y="505.4" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600" fill="#D97706">Brier180 0.214</text>
+<text x="70.0" y="610.0" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="16" font-weight="650" fill="#1F2937">Deployed engine: weibull_aft · confidence limited</text>
+<text x="70.0" y="642.0" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="400" fill="#6B7280">C-index: higher is better. Brier score: lower is better. Crowd-source historical availability remains unreconstructable.</text>
+</svg>
