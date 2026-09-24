@@ -1,6 +1,6 @@
 {
   "dataset_name": "Australia Student Visa Subclass 500 Processing Time Sources",
-  "version": "2026-09-24.1",
+  "version": "2026-09-24.2",
   "snapshot_date": "2026-09-24",
   "timezone": "Asia/Shanghai",
   "scope": "Publicly reproducible data about Australian Student visa subclass 500 processing/waiting times",
@@ -15,6 +15,11 @@
     {"path": "06_official_priority_rules_2026.csv", "class": "official_policy", "rows": 6},
     {"path": "07_platform_snapshots_2026-09.csv", "class": "third_party_platforms", "rows": 16},
     {"path": "08_community_cases_2026.csv", "class": "community_cases", "rows": 9},
+    {"path": "09_github_project_catalog.csv", "class": "github_source_catalog", "rows": 5},
+    {"path": "10_social_source_policy.csv", "class": "collection_policy", "rows": 5},
+    {"path": "11_visadashboard_cases.csv", "class": "anonymized_crowdsourced_cases", "rows": 1511, "granted": 1343, "right_censored_pending": 168},
+    {"path": "12_visadashboard_profile_2026-09.csv", "class": "case_dataset_profile", "rows": 33},
+    {"path": "community_submission_template.csv", "class": "manual_import_template", "example_rows": 1},
     {"path": "sources.csv", "class": "provenance_catalog"},
     {"path": "data_dictionary.csv", "class": "schema_documentation"}
   ],
@@ -24,11 +29,13 @@
     "Quarterly flow rate is a completion rate for a lodgement cohort, not a visa grant rate.",
     "Month-valued durations are preserved as raw strings rather than converted with a fixed day multiplier.",
     "Third-party republishers do not become independent observations when they copy Home Affairs values.",
-    "Community timelines are self-reported, selected cases and must not be used as a representative average."
+    "Community timelines are self-reported, selected cases and must not be used as a representative average.",
+    "Pending VisaDashboard rows are retained as right-censored observations instead of being discarded.",
+    "VisaDashboard source IDs, officer codes, handles and free-text notes are not retained."
   ],
   "excluded_or_limited_sources": [
     "ImmiAccount-specific statuses require applicant login and are not public aggregate data.",
-    "Closed WeChat groups and login-gated or non-indexable social posts are outside reproducible public coverage.",
+    "Closed WeChat groups and login-gated or non-indexable social posts are outside reproducible public coverage unless the user supplies a consented structured export.",
     "Videos and unsourced claims were catalogued during research but excluded from numeric datasets."
   ]
 }

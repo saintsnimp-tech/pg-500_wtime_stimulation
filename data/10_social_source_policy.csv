@@ -1,0 +1,7 @@
+platform,collection_mode,default_enabled,allowed_content,excluded_content,training_role,notes
+Reddit,Public post URLs and manually verified timelines,true,Public posts with explicit lodgement and decision dates,Usernames private messages deleted posts and inferred personal attributes,Low-weight anecdotal cases,Deduplicate by timeline fingerprint and retain source URL
+X (Twitter),Official API or user-supplied export,false,Public posts available under platform terms,Login bypass scraped private content handles and profile attributes,Lead generation/manual verification,Do not enable HTML scraping by default
+Weibo,Official API or user-supplied export,false,Public posts available under platform terms,Login bypass CAPTCHA evasion user identifiers and private groups,Lead generation/manual verification,Chinese date wording needs manual review
+Xiaohongshu,User-supplied export/manual URL review,false,Public posts the user is permitted to reuse,Login bypass CAPTCHA evasion device automation user identifiers and private groups,Lead generation/manual verification,Do not build anti-bot bypasses; store only normalized dates and broad features
+WeChat groups,Consented structured submission only,false,Records submitted with group and participant consent,Closed-group scraping names avatars account IDs and chat exports without consent,Optional low-weight evidence,Prefer the template and remove free text before ingestion
+

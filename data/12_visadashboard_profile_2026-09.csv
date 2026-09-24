@@ -1,0 +1,34 @@
+﻿dimension,value,row_count,snapshot_date,notes
+application_status,granted,1343,2026-09-24,Derived from anonymized normalized case data
+application_status,pending,168,2026-09-24,Derived from anonymized normalized case data
+education_level,PhD,1399,2026-09-24,Derived from anonymized normalized case data
+education_level,Master,57,2026-09-24,Derived from anonymized normalized case data
+education_level,Unknown,55,2026-09-24,Derived from anonymized normalized case data
+study_sector,Postgraduate Research,1399,2026-09-24,Derived from anonymized normalized case data
+study_sector,Higher Education,57,2026-09-24,Derived from anonymized normalized case data
+study_sector,Unknown,55,2026-09-24,Derived from anonymized normalized case data
+submit_location,Outside Australia,1415,2026-09-24,Derived from anonymized normalized case data
+submit_location,In Australia,78,2026-09-24,Derived from anonymized normalized case data
+submit_location,Unknown,18,2026-09-24,Derived from anonymized normalized case data
+includes_partner,no,1467,2026-09-24,Derived from anonymized normalized case data
+includes_partner,unknown,44,2026-09-24,Derived from anonymized normalized case data
+is_diy,unknown,1112,2026-09-24,Derived from anonymized normalized case data
+is_diy,yes,324,2026-09-24,Derived from anonymized normalized case data
+is_diy,no,75,2026-09-24,Derived from anonymized normalized case data
+provider_group,Unknown,935,2026-09-24,Derived from anonymized normalized case data
+provider_group,Other/Unverified,354,2026-09-24,Derived from anonymized normalized case data
+provider_group,Group of Eight,222,2026-09-24,Derived from anonymized normalized case data
+field_of_study_group,Other,938,2026-09-24,Derived from anonymized normalized case data
+field_of_study_group,Engineering,186,2026-09-24,Derived from anonymized normalized case data
+field_of_study_group,Natural Sciences,121,2026-09-24,Derived from anonymized normalized case data
+field_of_study_group,Health and Medicine,102,2026-09-24,Derived from anonymized normalized case data
+field_of_study_group,Computing and Data,102,2026-09-24,Derived from anonymized normalized case data
+field_of_study_group,Business and Economics,27,2026-09-24,Derived from anonymized normalized case data
+field_of_study_group,Humanities and Social Sciences,19,2026-09-24,Derived from anonymized normalized case data
+field_of_study_group,Education,10,2026-09-24,Derived from anonymized normalized case data
+field_of_study_group,Built Environment,6,2026-09-24,Derived from anonymized normalized case data
+quality_flag,unknown_education_level,55,2026-09-24,Derived from anonymized normalized case data
+quality_flag,unknown_submit_location,18,2026-09-24,Derived from anonymized normalized case data
+quality_flag,decision_before_lodgement,1,2026-09-24,Derived from anonymized normalized case data
+quality_flag,implausible_waiting_days,1,2026-09-24,Derived from anonymized normalized case data
+quality_flag,missing_lodgement_date,1,2026-09-24,Derived from anonymized normalized case data

@@ -1,0 +1,3 @@
+source_platform,source_url,lodgement_date,decision_date,as_of_date,application_status,education_level,study_sector,submit_location,citizenship_country,includes_partner,is_diy,provider_priority_at_lodgement,medical_complete_date,s56_date,consent_or_public_basis,review_notes
+example,https://example.invalid/public-post,2026-01-01,2026-02-01,2026-02-01,granted,PhD,Postgraduate Research,Outside Australia,,no,yes,unknown,,,public post with explicit dates,Remove this example row before importing
+

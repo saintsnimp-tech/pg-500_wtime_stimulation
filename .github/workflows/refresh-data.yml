@@ -1,0 +1,39 @@
+name: refresh-public-data
+
+on:
+  workflow_dispatch:
+    inputs:
+      snapshot_date:
+        description: "Snapshot date in YYYY-MM-DD; blank uses runner date"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  collect-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect public case data
+        shell: bash
+        run: |
+          SNAPSHOT="${{ inputs.snapshot_date }}"
+          if [ -z "$SNAPSHOT" ]; then SNAPSHOT="$(date -u +%F)"; fi
+          python 等签算法.py collect visadashboard --snapshot-date "$SNAPSHOT"
+      - name: Validate
+        run: |
+          python 等签算法.py validate
+          python 等签算法.py profile
+          python -m unittest discover -s tests -v
+      - uses: actions/upload-artifact@v4
+        with:
+          name: visadashboard-normalized-data
+          path: |
+            data/11_visadashboard_cases.csv
+            data/12_visadashboard_profile_2026-09.csv
+          if-no-files-found: error

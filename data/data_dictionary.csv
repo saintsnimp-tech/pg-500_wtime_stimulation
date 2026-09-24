@@ -23,3 +23,15 @@ representativeness,Whether the row can support population inference,string,Commu
 reproducibility,How easily the value can be rechecked from the source,string,High Medium or Low with qualifiers
 <5,Suppressed or less-than-five day/count display,string,Preserved as text and never coerced to zero
 0,Source-displayed zero-day processing,numeric,Generally means less than one full calendar day; not missing
+record_id,Source-local stable pseudonymous case ID,string,SHA-256 prefix; raw source ID is not retained
+duplicate_key,Potential cross-record duplicate fingerprint,string,Hash of dates and broad normalized features; equality is not proof of identity
+event_observed,Whether a final decision date is observed,0 or 1,0 indicates a right-censored pending case
+application_status,Normalized case status,string,granted or pending in the current VisaDashboard adapter
+lodgement_date,Application lodgement date,YYYY-MM-DD,Self-reported for crowd sources
+decision_date,Decision/grant date when observed,YYYY-MM-DD,Blank for pending records
+as_of_date,End date used to calculate current observed duration,YYYY-MM-DD,Decision date for events or dataset snapshot date for pending cases
+waiting_days,Observed calendar duration,integer,decision minus lodgement or snapshot minus lodgement for right-censored cases
+record_quality_score,Rule-based row quality score,0 to 100,Rows below 40 are excluded from the empirical baseline by default
+quality_flags,Machine-readable validation flags,pipe-separated string,Examples include missing_lodgement_date and decision_before_lodgement
+field_of_study_group,Broad privacy-preserving field group,string,Raw free-text major is not retained
+provider_group,Broad provider group,string,Group of Eight Other/Unverified or Unknown; raw school text is not retained
