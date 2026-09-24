@@ -1,0 +1,25 @@
+field,definition,unit_or_format,notes
+snapshot_date,Date this project captured or verified the value,YYYY-MM-DD,Not necessarily the source publication date
+official_page_updated,Last-updated date displayed on the official guide,YYYY-MM-DD,Controls the current official snapshot
+visa_subclass,Australian visa subclass identifier,string,500 for Student visa
+stream,Student visa education stream,string,Seven official sectors
+client_location,Location at time of lodgement,string,In Australia Outside Australia or global/all
+citizenship_country,Citizenship used by Home Affairs,string,China excludes SARs when explicitly stated
+percentile,Share of decided/granted cases completed within the value,integer,25 50 75 or 90
+percentile_50_raw,Source display value for median,string,Preserves Days/Months and less-than symbols
+percentile_50_days,Exact day value only when the source provides days,integer,Blank when source only says months
+percentile_90_raw,Source display value for 90th percentile,string,Not a guaranteed maximum
+percentile_90_days,Exact day value only when source provides days,integer,Blank for month-only official values
+student_median_days,Aggregate student-category median finalisation time,calendar days,Includes all student streams for that report
+primary_student_lodged,Primary student applications lodged in the cohort,count,Quarterly flow-rate denominator
+primary_student_finalised,Applications from that lodged cohort finalised by snapshot,count,Not the number granted
+flow_rate_percent,Finalised divided by lodged for the stated cohort,percent,Not visa grant rate
+reported_average_days,Average displayed by a third-party/crowd platform,calendar days,Sample size may be unknown
+reported_days,Duration explicitly claimed in a community post,calendar days,May use inclusive counting
+computed_calendar_days,Grant date minus lodgement date,calendar days,Calculated from dates without inclusive end day
+consistency_flag,Comparison of claimed duration and stated dates,string,Highlights likely off-by-one or material inconsistency
+authority_tier,Source quality classification,A to D,A official controlling; B reputable republisher; C tool/crowd platform; D anecdotal community
+representativeness,Whether the row can support population inference,string,Community cases default to not representative
+reproducibility,How easily the value can be rechecked from the source,string,High Medium or Low with qualifiers
+<5,Suppressed or less-than-five day/count display,string,Preserved as text and never coerced to zero
+0,Source-displayed zero-day processing,numeric,Generally means less than one full calendar day; not missing

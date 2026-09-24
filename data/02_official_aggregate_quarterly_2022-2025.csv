@@ -1,0 +1,10 @@
+program_year_quarter,period_start,period_end,student_median_days,comparison_value_days,comparison_basis,primary_student_lodged,primary_student_finalised,flow_rate_percent,source_url
+2022-23 Q4,2023-04-01,2023-06-30,10,40,June 2023 versus July 2022,151803,115807,76.29,https://immi.homeaffairs.gov.au/Visa-subsite/Pages/Processing-times/Reports/migration-temporary-visa-program-quarterly-report-processing-times-2223-q4.pdf
+2023-24 Q1,2023-07-01,2023-09-30,17,52,Same quarter previous year,121902,79108,64.89,https://immi.homeaffairs.gov.au/Visa-subsite/Pages/Processing-times/Reports/migration-temporary-visa-program-quarterly-report-processing-times-2324-q1.pdf
+2023-24 Q2,2023-10-01,2023-12-31,18,42,Same quarter previous year,111515,66058,59.24,https://immi.homeaffairs.gov.au/Visa-subsite/files/migration-temporary-visa-program-quarterly-report-processing-times-2324-q2.pdf
+2023-24 Q3,2024-01-01,2024-03-31,28,14,Same quarter previous year,130287,59577,45.73,https://immi.homeaffairs.gov.au/Visa-subsite/files/migration-temporary-visa-program-quarterly-report-processing-times-2324-q3.pdf
+2023-24 Q4,2024-04-01,2024-06-30,45,14,Same quarter previous year,125679,54294,43.20,https://immi.homeaffairs.gov.au/Visa-subsite/files/migration-temporary-visa-program-quarterly-report-processing-times-2324-q4.pdf
+2024-25 Q1,2024-07-01,2024-09-30,52,17,Same quarter previous year,85277,38438,45.07,https://immi.homeaffairs.gov.au/Visa-subsite/files/migration-temporary-visa-proogram-quarterly-report-processing-times-2425-q1.pdf
+2024-25 Q2,2024-10-01,2024-12-31,25,18,Same quarter previous year,92079,57406,62.34,https://immi.homeaffairs.gov.au/Visa-subsite/files/migration-temporary-visa-proogram-quarterly-report-processing-times-2425-q2.pdf
+2024-25 Q3,2025-01-01,2025-03-31,34,28,Same quarter previous year,89372,45243,50.62,https://immi.homeaffairs.gov.au/Visa-subsite/files/migration-temporary-visa-proogram-quarterly-report-processing-times-2425-q3.pdf
+2024-25 Q4,2025-04-01,2025-06-30,29,45,Same quarter previous year,104445,60864,58.27,https://immi.homeaffairs.gov.au/Visa-subsite/files/migration-temporary-visa-proogram-quarterly-report-processing-times-2425-q4.pdf
